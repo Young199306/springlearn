@@ -1,4 +1,5 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
@@ -6,6 +7,8 @@
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
@@ -28,4 +31,8 @@
   <!-- 注册MVC注解驱动 -->
   <mvc:annotation-driven />
 
+  <!-- proxy-target-class 默认值为 false，设置为 true 意思是 强制使用 CGLIB 动态代理 -->
+  <!-- 如果不指定 proxy-target-class ，spring会根据 被代理类 是否实现了接口 进行判断   使用jdk动态代理还是使用CGLIB动态代理。 -->
+  <!-- 如果 被代理类实现了 接口，则使用JDK动态代理，如果没有实现接口，则使用CGLIB动态代理。 -->
+  <aop:aspectj-autoproxy/>
 </beans>
